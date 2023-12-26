@@ -65,14 +65,14 @@ def distill_tweet(tweet):
 def get_gpt_tweets(tweets):
     preprompt = """
     The following is a formatted roundup of a user's tweets for the past year. Each tweet is contained with <|tweet|> and <|/tweet|>. Each tweet has an id within <|id|> and <|/id> and text within <|text|> and <|/text|>.
-    From this list of tweets can you find the user's most extreme, explosive, exquisite, expressive, and extradorinary tweet of the year. Based off all the user's tweets, determine a user's spirit animal with an adjective followed by the animal (i.e. productive panda). 
+    From this list of tweets can you find the user's most extreme, explosive, exquisite, expressive, and extraordinary tweet of the year. Based off all the user's tweets, determine a user's spirit animal with an adjective followed by the animal (i.e. productive panda).
     Also generate a cute, casual, interesting, and funny one paragraph summary of the user's year based off their tweets and address the user with pronouns like "you". Finally output JSON in the following format:
     {
         "extreme": tweet_id,
         "explosive": tweet_id,
         "exquisite": tweet_id,
         "expressive": tweet_id,
-        "extradorinary": tweet_id,
+        "extraordinary": tweet_id,
         "spirit_animal": adjective animal_name,
         "year_summary": text
     }
@@ -107,7 +107,6 @@ def get_user_wrapped_tweets(user):
     shortest_tweet = min(distilled_tweets, key=lambda x: len(x['text']))
     most_liked_tweet = max(distilled_tweets, key=lambda x: x['likes'])
     most_retweeted_tweet = max(distilled_tweets, key=lambda x: x['retweets'])
-    most_quoted_tweet = max(distilled_tweets, key=lambda x: x['quotes'])
     most_commented_tweet = max(distilled_tweets, key=lambda x: x['comments'])
 
     # How you started
@@ -115,12 +114,10 @@ def get_user_wrapped_tweets(user):
     # How you ended your year
     last_tweet = max(distilled_tweets, key=lambda x: x['date'])
 
-    # 5 random tweets
-    num_rand_distilled_tweets = 5 if len(distilled_tweets) > 5 else len(distilled_tweets)
+    num_rand_distilled_tweets = 1 if len(distilled_tweets) > 1 else len(distilled_tweets)
     random_tweets = random.sample(distilled_tweets, num_rand_distilled_tweets)
 
-    # 5 random tweets you quoted
-    num_random_quoted_tweets = 5 if len(quoted_tweets) > 5 else len(quoted_tweets)
+    num_random_quoted_tweets = 1 if len(quoted_tweets) > 1 else len(quoted_tweets)
     random_quoted_tweets = random.sample(quoted_tweets, num_random_quoted_tweets)
 
     top_tweets = sorted(distilled_tweets, key=lambda x: x['likes'], reverse=True)[:25]
@@ -139,14 +136,13 @@ def get_user_wrapped_tweets(user):
         'shortest_tweet': shortest_tweet['id'],
         'most_liked_tweet': most_liked_tweet['id'],
         'most_retweeted_tweet': most_retweeted_tweet['id'],
-        'most_quoted_tweet': most_quoted_tweet['id'],
         'most_commented_tweet': most_commented_tweet['id'],
         'first_tweet': first_tweet['id'],
         'last_tweet': last_tweet['id'],
-        'random_tweets': [tweet['id'] for tweet in random_tweets],
-        'random_quoted_tweets': [tweet['id'] for tweet in random_quoted_tweets],
+        'random_tweets': random_tweets[0]['id'] if len(random_tweets) > 0 else None,
+        'random_quoted_tweets': random_quoted_tweets[0]['id'] if len(random_quoted_tweets) > 0 else None,
         'gpt_tweets': gpt_tweet_ids
     }
 
 
-print(get_user_wrapped_tweets("JeffBezos"))
+print(get_user_tweets("JeffBezos"))
