@@ -1,1 +1,100 @@
-{'flow_token': 'g;170348193106247515:-1703481931069:b4YSOrUdJ63jZvgpNfo4kxhb:1', 'status': 'success', 'subtasks': [{'subtask_id': 'OpenAccount', 'callbacks': [{'trigger': 'impression', 'endpoint': 'callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAccount%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%2C%22signup_event_type%22%3A%7B%22value%22%3A2%2C%22name%22%3A%22StartAccountSetup%22%2C%22annotations%22%3A%7B%7D%7D%7D%7D%5D%7D'}, {'trigger': 'impression', 'scribe_config': {'page': 'onboarding', 'section': 'open_app', 'component': 'OpenAccount', 'element': 'StartAccountSetup', 'action': 'impression'}}, {'trigger': 'impression', 'endpoint': 'callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAccount%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%7D%7D%5D%7D'}, {'trigger': 'impression', 'scribe_config': {'page': 'onboarding', 'section': 'open_app', 'component': 'OpenAccount', 'action': 'impression'}}], 'open_account': {'user': {'id': 1739155388212105216, 'id_str': '1739155388212105216', 'name': 'Open App User', 'screen_name': '_LO_12257qQf9tD', 'user_type': 'Soft'}, 'next_link': {'link_type': 'subtask', 'link_id': 'next_link', 'subtask_id': 'OpenAppFlowStartAccountSetupOpenLink'}, 'oauth_token': '1739155388212105216-DmBWoLN7MSG0Ftt80rr6Zl99CljRL5', 'oauth_token_secret': 'deD8IwPfzlyCTXSkvcLI4Uii6Vp1QMozKl4v2YOsPQ5qW', 'attribution_event': 'signup'}}, {'subtask_id': 'OpenAppFlowStartAccountSetupOpenLink', 'callbacks': [{'trigger': 'impression', 'endpoint': 'callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAppFlowStartAccountSetupOpenLink%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%7D%7D%5D%7D'}, {'trigger': 'impression', 'scribe_config': {'page': 'onboarding', 'section': 'open_app', 'component': 'OpenAppFlowStartAccountSetupOpenLink', 'action': 'impression'}}], 'open_link': {'link': {'link_type': 'subtask', 'link_id': 'open_app_flow_start_account_setup', 'subtask_id': 'NextTaskOpenLink'}, 'onboarding_callback_path': 'callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAppFlowStartAccountSetupOpenLink%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%2C%22signup_event_type%22%3A%7B%22value%22%3A2%2C%22name%22%3A%22StartAccountSetup%22%2C%22annotations%22%3A%7B%7D%7D%7D%7D%5D%7D'}}, {'subtask_id': 'NextTaskOpenLink', 'callbacks': [{'trigger': 'impression', 'endpoint': 'callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22NextTaskOpenLink%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%7D%7D%5D%7D'}, {'trigger': 'impression', 'scribe_config': {'page': 'onboarding', 'section': 'open_app', 'component': 'NextTaskOpenLink', 'action': 'impression'}}], 'open_link': {'link': {'link_type': 'task', 'link_id': 'next_link'}}}]}
+{
+  "flow_token": "g;170348193106247515:-1703481931069:b4YSOrUdJ63jZvgpNfo4kxhb:1",
+  "status": "success",
+  "subtasks": [
+    {
+      "subtask_id": "OpenAccount",
+      "callbacks": [
+        {
+          "trigger": "impression",
+          "endpoint": "callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAccount%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%2C%22signup_event_type%22%3A%7B%22value%22%3A2%2C%22name%22%3A%22StartAccountSetup%22%2C%22annotations%22%3A%7B%7D%7D%7D%7D%5D%7D"
+        },
+        {
+          "trigger": "impression",
+          "scribe_config": {
+            "page": "onboarding",
+            "section": "open_app",
+            "component": "OpenAccount",
+            "element": "StartAccountSetup",
+            "action": "impression"
+          }
+        },
+        {
+          "trigger": "impression",
+          "endpoint": "callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAccount%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%7D%7D%5D%7D"
+        },
+        {
+          "trigger": "impression",
+          "scribe_config": {
+            "page": "onboarding",
+            "section": "open_app",
+            "component": "OpenAccount",
+            "action": "impression"
+          }
+        }
+      ],
+      "open_account": {
+        "user": {
+          "id": 1739155388212105216,
+          "id_str": "1739155388212105216",
+          "name": "Open App User",
+          "screen_name": "_LO_12257qQf9tD",
+          "user_type": "Soft"
+        },
+        "next_link": {
+          "link_type": "subtask",
+          "link_id": "next_link",
+          "subtask_id": "OpenAppFlowStartAccountSetupOpenLink"
+        },
+        "oauth_token": "1739155388212105216-DmBWoLN7MSG0Ftt80rr6Zl99CljRL5",
+        "oauth_token_secret": "deD8IwPfzlyCTXSkvcLI4Uii6Vp1QMozKl4v2YOsPQ5qW",
+        "attribution_event": "signup"
+      }
+    },
+    {
+      "subtask_id": "OpenAppFlowStartAccountSetupOpenLink",
+      "callbacks": [
+        {
+          "trigger": "impression",
+          "endpoint": "callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAppFlowStartAccountSetupOpenLink%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%7D%7D%5D%7D"
+        },
+        {
+          "trigger": "impression",
+          "scribe_config": {
+            "page": "onboarding",
+            "section": "open_app",
+            "component": "OpenAppFlowStartAccountSetupOpenLink",
+            "action": "impression"
+          }
+        }
+      ],
+      "open_link": {
+        "link": {
+          "link_type": "subtask",
+          "link_id": "open_app_flow_start_account_setup",
+          "subtask_id": "NextTaskOpenLink"
+        },
+        "onboarding_callback_path": "callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22OpenAppFlowStartAccountSetupOpenLink%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%2C%22signup_event_type%22%3A%7B%22value%22%3A2%2C%22name%22%3A%22StartAccountSetup%22%2C%22annotations%22%3A%7B%7D%7D%7D%7D%5D%7D"
+      }
+    },
+    {
+      "subtask_id": "NextTaskOpenLink",
+      "callbacks": [
+        {
+          "trigger": "impression",
+          "endpoint": "callback.json?product=metric-tracking&identifier=generic-metric-tracking-cb&params=%7B%22data%22%3A%5B%7B%22dataset%22%3A%22signup_events%22%2C%22signup_event_data%22%3A%7B%22subtask_id%22%3A%22NextTaskOpenLink%22%2C%22flow_token%22%3A%22g%3B170348193106247515%3A-1703481931069%3Ab4YSOrUdJ63jZvgpNfo4kxhb%3A1%22%2C%22flow_name%22%3A%22welcome%22%2C%22flow_start_location%22%3A%22splash_screen%22%2C%22signup_flow_name%22%3A%22open_app%22%7D%7D%5D%7D"
+        },
+        {
+          "trigger": "impression",
+          "scribe_config": {
+            "page": "onboarding",
+            "section": "open_app",
+            "component": "NextTaskOpenLink",
+            "action": "impression"
+          }
+        }
+      ],
+      "open_link": { "link": { "link_type": "task", "link_id": "next_link" } }
+    }
+  ]
+}

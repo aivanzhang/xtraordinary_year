@@ -1,0 +1,27 @@
+{
+  "longest_tweet": "1659576309432090625",
+  "shortest_tweet": "1661329935167033346",
+  "most_liked_tweet": "1620466730572349442",
+  "most_retweeted_tweet": "1659576309432090625",
+  "most_quoted_tweet": "1620466730572349442",
+  "most_commented_tweet": "1659576309432090625",
+  "first_tweet": "1619418820984340481",
+  "last_tweet": "1666616416307646465",
+  "random_tweets": [
+    "1661329935167033346",
+    "1619418820984340481",
+    "1632574072398704640",
+    "1666616416307646465",
+    "1625224820786094080"
+  ],
+  "random_quoted_tweets": ["1619418820984340481", "1625224820786094080"],
+  "gpt_tweets": {
+    "extreme": "1620466730572349442",
+    "explosive": "1659576309432090625",
+    "exquisite": "1625224820786094080",
+    "expressive": "1633223640110989315",
+    "extradorinary": "1661418376038871040",
+    "spirit_animal": "inspiring eagle",
+    "year_summary": "Throughout the year, you've shared your amazement and gratitude in various moments. From being in awe of incredible storytelling to expressing gratitude and best wishes, you've also shared excitement for rocketry achievements. Your spirit animal for the year is an inspiring eagle, a creature known for its majesty and formidable presence in nature."
+  }
+}
