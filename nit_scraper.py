@@ -139,10 +139,7 @@ def get_user_wrapped_tweets(user):
         'most_commented_tweet': most_commented_tweet['id'],
         'first_tweet': first_tweet['id'],
         'last_tweet': last_tweet['id'],
-        'random_tweets': random_tweets[0]['id'] if len(random_tweets) > 0 else None,
-        'random_quoted_tweets': random_quoted_tweets[0]['id'] if len(random_quoted_tweets) > 0 else None,
+        'random_tweet': random_tweets[0]['id'] if len(random_tweets) > 0 else None,
+        'random_quoted_tweet': random_quoted_tweets[0]['id'] if len(random_quoted_tweets) > 0 else None,
         'gpt_tweets': gpt_tweet_ids
     }
-
-
-print(get_user_tweets("JeffBezos"))

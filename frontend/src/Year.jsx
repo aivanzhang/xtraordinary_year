@@ -1,6 +1,7 @@
 import { VStack, Box, HStack, Text } from "@chakra-ui/react";
 import { BsTwitterX, BsTwitter } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import TopBar from "./TopBar";
 
 const getRandomPosition = () => ({
   top: `${Math.random() * 100}%`,
@@ -64,38 +65,76 @@ const XWrapper = ({ text }) => (
 
 export default function Year() {
   const tw_details = {
-    longest_tweet: "1659576309432090625",
-    shortest_tweet: "1661329935167033346",
-    most_liked_tweet: "1620466730572349442",
-    most_retweeted_tweet: "1659576309432090625",
-    most_commented_tweet: "1659576309432090625",
-    first_tweet: "1619418820984340481",
-    last_tweet: "1666616416307646465",
-    random_tweet: "1666616416307646465",
-    random_quoted_tweet: "1619418820984340481",
+    longest_tweet: "1675943695772975106",
+    shortest_tweet: "1703423597396762827",
+    most_liked_tweet: "1702691249680158766",
+    most_retweeted_tweet: "1702691249680158766",
+    most_commented_tweet: "1702691249680158766",
+    first_tweet: "1609672341755142145",
+    last_tweet: "1739378320649949652",
+    random_tweet: "1642243244049436672",
+    random_quoted_tweet: "1687634141951705088",
     gpt_tweets: {
-      extreme: "1620466730572349442",
-      explosive: "1659576309432090625",
-      exquisite: "1625224820786094080",
-      expressive: "1633223640110989315",
-      extraordinary: "1661418376038871040",
-      spirit_animal: "inspiring eagle",
+      extreme: "1670888164117090304",
+      explosive: "1702007963089780872",
+      exquisite: "1675946636810534912",
+      expressive: "1658665983685558272",
+      extraordinary: "1621977693620432896",
+      spirit_animal: "adventurous jaguar",
       year_summary:
-        "Throughout the year, you've shared your amazement and gratitude in various moments. From being in awe of incredible storytelling to expressing gratitude and best wishes, you've also shared excitement for rocketry achievements. Your spirit animal for the year is an inspiring eagle, a creature known for its majesty and formidable presence in nature.",
+        "You've had an extraordinary year, from exploring the tech scene in SF and rethinking productivity to diving into the heart of AI and tech culture. You've had extreme moments, explosive realizations, and exquisite insights. You've been expressive about your experiences in SF, and your spirit animal is an adventurous jaguar, always on the hunt for the next big thing.",
     },
   };
+  // const tw_details = {
+  //   longest_tweet: "1617576605181935616",
+  //   shortest_tweet: "1702072507937747056",
+  //   most_liked_tweet: "1617576605181935616",
+  //   most_retweeted_tweet: "1617576605181935616",
+  //   most_commented_tweet: "1617576605181935616",
+  //   first_tweet: "1617576605181935616",
+  //   last_tweet: "1729924432980836792",
+  //   random_tweet: "1635721390446739463",
+  //   random_quoted_tweet: "1623403243077337090",
+  //   gpt_tweets: {
+  //     extreme: "1641517055949275138",
+  //     explosive: "1623403243077337090",
+  //     exquisite: "1617576605181935616",
+  //     expressive: "1691637722929115172",
+  //     extraordinary: "1706508442108588316",
+  //     spirit_animal: "expressive hummingbird",
+  //     year_summary:
+  //       "Throughout the year, you've expressed a wide range of thoughts and activities, from acknowledging achievements with 'congrats!' to expressing desires like 'Would love to pay for this!' You've also shared aspects of your life, humor, and interactions through brief yet impactful tweets. There's a mix of technology mentions, references to locations, gratitude, and even a casual '👋.' It has been a year of varied experiences and expressions for you.",
+  //   },
+  // };
+  // const tw_details = {
+  //   longest_tweet: "1659576309432090625",
+  //   shortest_tweet: "1661329935167033346",
+  //   most_liked_tweet: "1620466730572349442",
+  //   most_retweeted_tweet: "1659576309432090625",
+  //   most_commented_tweet: "1659576309432090625",
+  //   first_tweet: "1619418820984340481",
+  //   last_tweet: "1666616416307646465",
+  //   random_tweet: "1666616416307646465",
+  //   random_quoted_tweet: "1619418820984340481",
+  //   gpt_tweets: {
+  //     extreme: "1620466730572349442",
+  //     explosive: "1659576309432090625",
+  //     exquisite: "1625224820786094080",
+  //     expressive: "1633223640110989315",
+  //     extraordinary: "1661418376038871040",
+  //     spirit_animal: "inspiring eagle",
+  //     year_summary:
+  //       "Throughout the year, you've shared your amazement and gratitude in various moments. From being in awe of incredible storytelling to expressing gratitude and best wishes, you've also shared excitement for rocketry achievements. Your spirit animal for the year is an inspiring eagle, a creature known for its majesty and formidable presence in nature.",
+  //   },
+  // };
+
+  useEffect(() => {}, []);
 
   return (
     <VStack className="w-full md:w-screen">
       <BackgroundWithImages />
       <VStack p="4" className="w-full">
-        <HStack className="text-3xl font-bold text-[#1DA1F2]">
-          <span>my</span>
-          <span className="inline-flex justify-center items-center">
-            <XWrapper text="traordinary" />
-          </span>
-          <span> year </span>
-        </HStack>
+        <TopBar />
         <div className="h-10" />
         <VStack spacing="2" className="w-full">
           <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
