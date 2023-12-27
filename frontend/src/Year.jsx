@@ -27,13 +27,13 @@ const BackgroundWithImages = () => {
   );
 };
 
-const TweetComponent = ({ tweetId, emoji }) => {
+const TweetComponent = ({ username = "SBerens1", tweetId, emoji }) => {
   const array_emojis = Array(8).fill(0);
   const [tweetUrl, setTweetUrl] = useState();
 
   useEffect(() => {
     setTweetUrl(
-      `https://twitter.com/SpaceX/status/${tweetId}?ref_src=twsrc%5Etfw`,
+      `https://twitter.com/${username}/status/${tweetId}?ref_src=twsrc%5Etfw`,
     );
   }, [tweetId]);
 
@@ -64,27 +64,48 @@ const XWrapper = ({ text }) => (
 );
 
 export default function Year() {
-  const tw_details = {
-    longest_tweet: "1675943695772975106",
-    shortest_tweet: "1703423597396762827",
-    most_liked_tweet: "1702691249680158766",
-    most_retweeted_tweet: "1702691249680158766",
-    most_commented_tweet: "1702691249680158766",
-    first_tweet: "1609672341755142145",
-    last_tweet: "1739378320649949652",
-    random_tweet: "1642243244049436672",
-    random_quoted_tweet: "1687634141951705088",
-    gpt_tweets: {
-      extreme: "1670888164117090304",
-      explosive: "1702007963089780872",
-      exquisite: "1675946636810534912",
-      expressive: "1658665983685558272",
-      extraordinary: "1621977693620432896",
-      spirit_animal: "adventurous jaguar",
-      year_summary:
-        "You've had an extraordinary year, from exploring the tech scene in SF and rethinking productivity to diving into the heart of AI and tech culture. You've had extreme moments, explosive realizations, and exquisite insights. You've been expressive about your experiences in SF, and your spirit animal is an adventurous jaguar, always on the hunt for the next big thing.",
-    },
-  };
+  // const tw_details = {
+  //   longest_tweet: "1675943695772975106",
+  //   shortest_tweet: "1703423597396762827",
+  //   most_liked_tweet: "1702691249680158766",
+  //   most_retweeted_tweet: "1681163960601710594",
+  //   most_commented_tweet: "1728590407880335779",
+  //   first_tweet: "1663267068391886848",
+  //   last_tweet: "1739378320649949652",
+  //   random_tweet: "1729343496207942038",
+  //   random_quoted_tweet: "1675943695772975106",
+  //   gpt_tweets: {
+  //     extreme: "1702007963089780872",
+  //     explosive: "1679632418842746880",
+  //     exquisite: "1728881364823683114",
+  //     expressive: "1691887571553628571",
+  //     extraordinary: "1678787256497297921",
+  //     spirit_animal: "curious cat",
+  //     year_summary:
+  //       "You've had quite the year, filled with tech musings, witty observations, and a touch of mischief. From pondering the value of targetted advertising to questioning the measurement of ketamine in horsepower, your tweets have kept your followers engaged and entertained. You've shared your experiences living on a budget in SF, navigating the tech world, and even ventured into philosophical territories with thoughts on the distribution of outcomes. Your spirit animal for the year would be a curious cat, always probing and questioning the world around you.",
+  //   },
+  // };
+  // const tw_details = {
+  //   longest_tweet: "1675943695772975106",
+  //   shortest_tweet: "1703423597396762827",
+  //   most_liked_tweet: "1702691249680158766",
+  //   most_retweeted_tweet: "1702691249680158766",
+  //   most_commented_tweet: "1702691249680158766",
+  //   first_tweet: "1609672341755142145",
+  //   last_tweet: "1739378320649949652",
+  //   random_tweet: "1642243244049436672",
+  //   random_quoted_tweet: "1687634141951705088",
+  //   gpt_tweets: {
+  //     extreme: "1670888164117090304",
+  //     explosive: "1702007963089780872",
+  //     exquisite: "1675946636810534912",
+  //     expressive: "1658665983685558272",
+  //     extraordinary: "1621977693620432896",
+  //     spirit_animal: "adventurous jaguar",
+  //     year_summary:
+  //       "You've had an extraordinary year, from exploring the tech scene in SF and rethinking productivity to diving into the heart of AI and tech culture. You've had extreme moments, explosive realizations, and exquisite insights. You've been expressive about your experiences in SF, and your spirit animal is an adventurous jaguar, always on the hunt for the next big thing.",
+  //   },
+  // };
   // const tw_details = {
   //   longest_tweet: "1617576605181935616",
   //   shortest_tweet: "1702072507937747056",

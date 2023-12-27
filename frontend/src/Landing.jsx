@@ -20,9 +20,17 @@ export default function Landing() {
       <div className="h-10" />
       <VStack className="w-full md:w-1/3">
         <Text className="w-full">
-          hey! i&apos;m ivan one of my friends created a year in review for
-          GoodReads. i thought it would be cool to do the same for Twitter. so i
-          did. here&apos;s how it works:
+          hey, i&apos;m ivan! one of my friends created a year in review{" "}
+          <a
+            href="https://www.myyearinbooks.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            for books
+          </a>
+          . i thought it would be cool to do the same for Twitter. so i did.
+          here&apos;s how it works:
         </Text>
         <ol className="list-decimal w-[90%] md:w-[80%]">
           <li>make sure your Twitter account is public</li>
@@ -31,9 +39,8 @@ export default function Landing() {
             already been created for you
           </li>
           <li>
-            If not you will need to pay a $5 fee. this fee goes towards the cost
-            of running the server, ai calls, and more. it also helps with
-            preventing spam.
+            If not you will need to pay a $5 fee. this fee prevents spam and
+            goes towards the cost of running the server, ai calls, and more.
           </li>
           <li>
             after you pay, the username will be added to the queue. depending on
@@ -44,8 +51,12 @@ export default function Landing() {
           <li>
             check the status of your year in review here: <br />
             <span className="underline font-bold">
-              {window.location.origin}/check/USERNAME
+              {window.location.origin}/pending/USERNAME
             </span>
+          </li>
+          <li>
+            sometime in January, any additional money (less costs) will be
+            donated to charity (to be determined via a poll).
           </li>
         </ol>
         <div className="h-5" />

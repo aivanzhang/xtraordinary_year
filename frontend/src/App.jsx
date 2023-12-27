@@ -7,7 +7,6 @@ import Layout from "./Layout";
 import "./App.css";
 import Year from "./Year";
 import Landing from "./Landing";
-import Check from "./Check";
 import Pending from "./Pending";
 
 function App() {

@@ -92,12 +92,15 @@ def get_gpt_tweets(tweets):
     )
     notable_tweets = response.choices[0].message.content;
     notable_tweets = json.loads(notable_tweets)
-
+    notable_tweets = {str(key): str(value) for key, value in notable_tweets.items()}
     return notable_tweets
 
 def get_user_wrapped_tweets(user):
     tweets = get_user_tweets(user)
     distilled_tweets = [distill_tweet(tweet) for tweet in tweets]
+    if len(distilled_tweets) == 0:
+        return None
+
     quoted_tweets = []
     for tweet in distilled_tweets:
         if tweet['quoted']:
@@ -105,13 +108,19 @@ def get_user_wrapped_tweets(user):
 
     longest_tweet = max(distilled_tweets, key=lambda x: len(x['text']))
     shortest_tweet = min(distilled_tweets, key=lambda x: len(x['text']))
-    most_liked_tweet = max(distilled_tweets, key=lambda x: x['likes'])
-    most_retweeted_tweet = max(distilled_tweets, key=lambda x: x['retweets'])
-    most_commented_tweet = max(distilled_tweets, key=lambda x: x['comments'])
 
-    # How you started
+
+
+    most_liked_tweet = max(distilled_tweets, key=lambda x: x['likes'])
+    distilled_tweets = [tweet for tweet in distilled_tweets if tweet['id'] != most_liked_tweet['id']]
+
+    most_retweeted_tweet = max(distilled_tweets, key=lambda x: x['retweets'])
+    distilled_tweets = [tweet for tweet in distilled_tweets if tweet['id'] != most_retweeted_tweet['id']]
+
+    most_commented_tweet = max(distilled_tweets, key=lambda x: x['comments'])
+    distilled_tweets = [tweet for tweet in distilled_tweets if tweet['id'] != most_commented_tweet['id']]
+
     first_tweet = min(distilled_tweets, key=lambda x: x['date'])
-    # How you ended your year
     last_tweet = max(distilled_tweets, key=lambda x: x['date'])
 
     num_rand_distilled_tweets = 1 if len(distilled_tweets) > 1 else len(distilled_tweets)
@@ -132,14 +141,14 @@ def get_user_wrapped_tweets(user):
     gpt_tweet_ids = get_gpt_tweets(gpt_tweets)
 
     return {
-        'longest_tweet': longest_tweet['id'],
-        'shortest_tweet': shortest_tweet['id'],
-        'most_liked_tweet': most_liked_tweet['id'],
-        'most_retweeted_tweet': most_retweeted_tweet['id'],
-        'most_commented_tweet': most_commented_tweet['id'],
-        'first_tweet': first_tweet['id'],
-        'last_tweet': last_tweet['id'],
-        'random_tweet': random_tweets[0]['id'] if len(random_tweets) > 0 else None,
-        'random_quoted_tweet': random_quoted_tweets[0]['id'] if len(random_quoted_tweets) > 0 else None,
+        'longest_tweet': str(longest_tweet['id']),
+        'shortest_tweet': str(shortest_tweet['id']),
+        'most_liked_tweet': str(most_liked_tweet['id']),
+        'most_retweeted_tweet': str(most_retweeted_tweet['id']),
+        'most_commented_tweet': str(most_commented_tweet['id']),
+        'first_tweet': str(first_tweet['id']),
+        'last_tweet': str(last_tweet['id']),
+        'random_tweet': str(random_tweets[0]['id']) if len(random_tweets) > 0 else None,
+        'random_quoted_tweet': str(random_quoted_tweets[0]['id']) if len(random_quoted_tweets) > 0 else None,
         'gpt_tweets': gpt_tweet_ids
     }
