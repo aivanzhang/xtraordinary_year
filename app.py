@@ -90,8 +90,6 @@ endpoint_secret = endpoint_secret_test
 @app.post("/pending_user")
 async def pending_user(request: Request):
     payload = await request.body()
-    # print(payload)
-    print(request.headers)
     sig_header = request.headers.get('stripe-signature')
     event = None
 
