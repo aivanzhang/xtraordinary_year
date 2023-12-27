@@ -114,6 +114,18 @@ async def create_checkout_session(request: Request, username: str):
 # endpoint_secret = endpoint_secret_test
 endpoint_secret = 'whsec_u6TjbLfzWS6dJKr9lJVQDj4Ufhjkgn9d'
 
+# create pending user
+@app.post("/add_pending_user")
+@limiter.limit("100/second")
+async def add_pending_user(request: Request):
+    req = await request.json()
+    username = req["username"]
+    username = username.lower()
+    customer_email = req["customer_email"]
+    status_collection.insert_one({"username": username, "status": "pending", "customer_email": customer_email})
+
+    return Response(status_code=200)
+
 # create username pending from stripe
 @app.post("/pending_user")
 @limiter.limit("100/second")

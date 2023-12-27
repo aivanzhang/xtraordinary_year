@@ -74,7 +74,7 @@ def get_user_tweets(user):
     while retries < max_retries:
         try:
             random_instance = scraper.get_random_instance()
-            tweets = scraper.get_tweets(user, number=1000, max_retries=10, mode='user', since="2023-01-01", instance=random_instance)
+            tweets = scraper.get_tweets(user, number=100, max_retries=10, mode='user', since="2023-01-01", instance=random_instance)
             returned_tweets = tweets["tweets"]
             if len(returned_tweets) == 0:
                 raise Exception("No tweets returned")
@@ -185,14 +185,14 @@ def get_user_wrapped_tweets(user):
     num_random_quoted_tweets = 1 if len(quoted_tweets) > 1 else len(quoted_tweets)
     random_quoted_tweets = random.sample(quoted_tweets, num_random_quoted_tweets)
 
-    top_tweets = sorted(distilled_tweets, key=lambda x: x['likes'], reverse=True)[:25]
+    top_tweets = sorted(distilled_tweets, key=lambda x: x['likes'], reverse=True)[:5]
     remaining_tweets = [tweet for tweet in distilled_tweets if tweet not in top_tweets]
-    num_remaining_tweets = 25 if len(remaining_tweets) > 25 else len(remaining_tweets)
+    num_remaining_tweets = 5 if len(remaining_tweets) > 5 else len(remaining_tweets)
     random_gpt_tweets = random.sample(remaining_tweets, num_remaining_tweets)
     gpt_tweets = top_tweets + random_gpt_tweets
 
     for tweet in gpt_tweets:
-        tweet['text'] = tweet['text'][:300]
+        tweet['text'] = tweet['text'][:100]
 
     gpt_tweet_ids = get_gpt_tweets(gpt_tweets)
 
@@ -247,7 +247,7 @@ def create_wrapped_from_collection():
             if user_email:
                 send_email(YOUR_DOMAIN + '/year/' + username, user_email['customer_email'])
         print("Finished creating wrapped for " + username + " with status " + generation_status)
-        time.sleep(random.randint(1, 10))
+        time.sleep(random.randint(120, 180))
         status = get_pending_username()
 
 while True:

@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -42,8 +43,18 @@ export default function Landing() {
     setLoading(true);
     const userExists = await check();
     if (!userExists) {
-      navigate(`/start-purchase?username=${username}`);
+      try {
+        await axios.post("/add_pending_user", {
+          username,
+          customer_email: email,
+        });
+        navigate(`/pending/${username}`);
+      } catch (e) {
+        toast.error("Error adding user");
+        return;
+      }
     }
+    setEmail("");
     setUsername("");
     setLoading(false);
   };
@@ -68,18 +79,10 @@ export default function Landing() {
         </Text>
         <ol className="list-decimal w-[90%] md:w-[80%]">
           <li>make sure your Twitter account is public</li>
-          <li>enter the your username below and click the button.</li>
+          <li>enter the your username and email below and click the button.</li>
           <li>
-            if you&apos;ve already paid, you will be redirected to your
-            year/status page. otherwise you will need to pay a $5 fee. this fee
-            prevents spam and goes towards the cost of running the server, ai
-            calls, and more.
-          </li>
-          <li>
-            after you pay, the username will be added to the queue. depending on
-            traffic, it may take some time to process. if it is taking more than
-            24 hours, click the &quot;issues?&quot; button above to email me and
-            i will look into it as soon as possible.
+            your username will be added to the queue. depending on traffic and
+            limits, it may take some time to process.
           </li>
           <li>
             check the status of your year in review here: <br />
@@ -92,12 +95,32 @@ export default function Landing() {
             page. the email will be from myxtraordinaryyear@gmail.com (check
             spam if you don&apos;t see it).
           </li>
+          <li>
+            if you like this, consider buying me a coffee{" "}
+            <a
+              href="https://www.buymeacoffee.com/aivanzhang"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              here!
+            </a>
+          </li>
         </ol>
         <span className="italic">
-          note that this only accounts for your past 1000 tweets, replies,
-          and/or retweets.
+          note that this only accounts for your past 100 tweets, replies, and/or
+          retweets.
         </span>
         <div className="h-5" />
+        <InputGroup size="lg">
+          <InputLeftAddon>Email</InputLeftAddon>
+          <Input
+            placeholder="email to receive notification"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </InputGroup>
         <InputGroup size="lg">
           <InputLeftAddon>https://twitter.com/</InputLeftAddon>
           <Input
@@ -115,7 +138,7 @@ export default function Landing() {
           isLoading={loading}
           isDisabled={loading}
         >
-          Generate for $5
+          Generate
         </Button>
         <div className="h-5" />
         <Text className="font-bold">Examples</Text>
