@@ -1,0 +1,43 @@
+# flyctl launch added from .gitignore
+**/venv
+**/venv2
+
+# flyctl launch added from .trunk/.gitignore
+.trunk/**/*out
+.trunk/**/*logs
+.trunk/**/*actions
+.trunk/**/*notifications
+.trunk/**/*tools
+.trunk/**/plugins
+.trunk/**/user_trunk.yaml
+.trunk/**/user.yaml
+
+# flyctl launch added from frontend/.gitignore
+# Logs
+frontend/**/logs
+frontend/**/*.log
+frontend/**/npm-debug.log*
+frontend/**/yarn-debug.log*
+frontend/**/yarn-error.log*
+frontend/**/pnpm-debug.log*
+frontend/**/lerna-debug.log*
+
+frontend/**/node_modules
+frontend/**/dist
+frontend/**/dist-ssr
+frontend/**/*.local
+
+# Editor directories and files
+frontend/**/.vscode/*
+!frontend/**/.vscode/extensions.json
+frontend/**/.idea
+frontend/**/.DS_Store
+frontend/**/*.suo
+frontend/**/*.ntvs*
+frontend/**/*.njsproj
+frontend/**/*.sln
+frontend/**/*.sw?
+
+# flyctl launch added from frontend/node_modules/tailwindcss/stubs/.gitignore
+!frontend/node_modules/tailwindcss/stubs/**/*
+fly.toml

@@ -7,10 +7,6 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 import stripe
-from modal import Image, Stub, asgi_app
-
-image = Image.debian_slim().pip_install(["stripe", "pymongo", "slowapi"])
-stub = Stub("xtraordinary_backend")
 
 stripe.api_key = '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'
 # stripe.api_key = 'sk_test_51ORo6nDbJuqwhaWcMRErszF9hBqitjLOAktSiVj0AOdlE0V4OvOQ85iiuhoqR6MjwWl7spjitTf9bnt9GhDK9bqq00wwzaApuN'
@@ -34,9 +30,13 @@ status_collection = db["statuses"]  # Name of the collection
 
 app = FastAPI()
 
+origins = [
+    "https://www.myxtraordinaryyear.com",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -142,7 +142,6 @@ async def pending_user(request: Request):
 
     return Response(status_code=200)
 
-@stub.function(image=image)
-@asgi_app()
-def fastapi_app():
-    return app
+@app.get("/healthcheck")
+def read_root():
+    return {"status": "ok"}
