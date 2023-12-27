@@ -113,27 +113,44 @@ export default function Year() {
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               here&apos;s one of the first things you said
             </Text>
-            <TweetComponent tweetId={tw_details.first_tweet} />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.first_tweet}
+            />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               and ended it with
             </Text>
-            <TweetComponent tweetId={tw_details.last_tweet} />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.last_tweet}
+            />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               sometimes you said a lot
             </Text>
-            <TweetComponent tweetId={tw_details.longest_tweet} />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.longest_tweet}
+            />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               sometimes you said a little
             </Text>
-            <TweetComponent tweetId={tw_details.shortest_tweet} />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.shortest_tweet}
+            />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               people liked your Tweets
             </Text>
-            <TweetComponent tweetId={tw_details.most_liked_tweet} emoji="❤️" />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.most_liked_tweet}
+              emoji="❤️"
+            />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               retweeted your messages
             </Text>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.most_retweeted_tweet}
               emoji="🔁"
             />
@@ -141,6 +158,7 @@ export default function Year() {
               and commented on your thoughts
             </Text>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.most_commented_tweet}
               emoji="💬"
             />
@@ -152,6 +170,7 @@ export default function Year() {
               <span>tweets</span>
             </HStack>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.gpt_tweets.extreme}
               emoji="🥵"
             />
@@ -159,6 +178,7 @@ export default function Year() {
               <span>a few </span> <XWrapper text="plosive" /> <span>ones</span>
             </HStack>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.gpt_tweets.explosive}
               emoji="💥"
             />
@@ -166,6 +186,7 @@ export default function Year() {
               <span>some that were quite </span> <XWrapper text="quisite" />
             </HStack>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.gpt_tweets.exquisite}
               emoji="✨"
             />
@@ -174,6 +195,7 @@ export default function Year() {
               <span>than others </span>
             </HStack>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.gpt_tweets.expressive}
               emoji="🗣️"
             />
@@ -182,6 +204,7 @@ export default function Year() {
               <span>ones to cap off the year</span>
             </HStack>
             <TweetComponent
+              username={tw_details.username}
               tweetId={tw_details.gpt_tweets.extraordinary}
               emoji="🚀"
             />
@@ -201,11 +224,17 @@ export default function Year() {
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               p.s. here&apos; are something random you tweeted this year
             </Text>
-            <TweetComponent tweetId={tw_details.random_tweet} />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.random_tweet}
+            />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               p.p.s. here&apos; are something random you quoted this year
             </Text>
-            <TweetComponent tweetId={tw_details.random_quoted_tweet} />
+            <TweetComponent
+              username={tw_details.username}
+              tweetId={tw_details.random_quoted_tweet}
+            />
           </VStack>
         )}
       </VStack>
