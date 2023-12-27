@@ -6,8 +6,26 @@ import time
 from dotenv import load_dotenv
 from openai import OpenAI
 import json
-
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
 load_dotenv()
+uri = "mongodb+srv://ivan2:Q3DitAGvTrMsCuwA@cluster0.zcfgio2.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(uri, server_api=ServerApi("1"))
+db = client["xtraordinary"]  # Name of the database
+# {
+#     username: {
+#         ...
+#     }
+# }
+review_collection = db["reviews"]  # Name of the collection
+# {
+#     "username": {
+#         "status": "pending" | "error" | "success",
+#         "customer_id": "customer_id",
+# }
+# }
+# }
+status_collection = db["statuses"]  # Name of the collection
 
 client = OpenAI()
 
@@ -21,7 +39,10 @@ def get_user_tweets(user):
         try:
             random_instance = scraper.get_random_instance()
             tweets = scraper.get_tweets(user, mode='user', since="2023-01-01", instance=random_instance)
-            return tweets["tweets"]
+            returned_tweets = tweets["tweets"]
+            if len(returned_tweets) == 0:
+                raise Exception("No tweets returned")
+            return returned_tweets
         except Exception as e:
             print(f"An error occurred: {str(e)}")
             retries += 1
@@ -152,3 +173,33 @@ def get_user_wrapped_tweets(user):
         'random_quoted_tweet': str(random_quoted_tweets[0]['id']) if len(random_quoted_tweets) > 0 else None,
         'gpt_tweets': gpt_tweet_ids
     }
+
+def get_pending_username():
+    return status_collection.find_one(
+        {'status': 'pending'},
+        sort=[('created_at', 1)]
+    )
+
+def create_wrapped_from_collection():
+    status = get_pending_username()
+
+    while status is not None:
+        username = status['username']
+        user_tweets = get_user_wrapped_tweets(username)
+        if user_tweets is None:
+            status_collection.update_one(
+                {'username': username},
+                {'$set': {'status': 'error'}}
+            )
+        else:
+            status_collection.update_one(
+                {'username': username},
+                {'$set': {'status': 'success'}}
+            )
+
+            review_collection.insert_one({
+                'username': username,
+                'tweets': user_tweets
+            })
+        time.sleep(random.randint(1, 10))
+        status = get_pending_username()

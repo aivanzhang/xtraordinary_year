@@ -8,11 +8,23 @@ import {
 } from "@chakra-ui/react";
 import TopBar from "./TopBar";
 import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const [username, setUsername] = useState("");
+  const navigate = useNavigate();
 
   const check = async () => {};
+
+  const generate = async () => {
+    if (username === "") {
+      toast.error("Please enter a username");
+      return;
+    }
+    navigate(`/start-purchase?username=${username}`);
+  };
 
   return (
     <VStack p="4" className="w-full">
@@ -72,8 +84,13 @@ export default function Landing() {
         <Button className="w-full" colorScheme="blue">
           Check
         </Button>
-        <Button className="w-full" colorScheme="blue">
-          Create for $5
+        <Button
+          className="w-full"
+          type="submit"
+          colorScheme="blue"
+          onClick={generate}
+        >
+          Generate for $5
         </Button>
       </VStack>
     </VStack>

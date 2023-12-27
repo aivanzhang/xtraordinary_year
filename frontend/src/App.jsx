@@ -1,4 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
+import axios from "axios";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./ScrollToTop";
 import { ToastContainer } from "react-toastify";
@@ -8,6 +9,9 @@ import "./App.css";
 import Year from "./Year";
 import Landing from "./Landing";
 import Pending from "./Pending";
+import StartPurchase from "./StartPurchase";
+
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
             <Route index element={<Landing />} />
             <Route path="year/:username" element={<Year />} />
             <Route path="pending/:username" element={<Pending />} />
+            <Route path="start-purchase" element={<StartPurchase />} />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
