@@ -246,7 +246,7 @@ def create_wrapped_from_collection():
                 {'email': 1}
             )
             if user_email:
-                send_email(YOUR_DOMAIN + '/year/' + username, user_email['email'])
+                send_email(YOUR_DOMAIN + '/year/' + username, user_email)
         print("Finished creating wrapped for " + username + " with status " + generation_status)
         time.sleep(random.randint(1, 10))
         status = get_pending_username()
