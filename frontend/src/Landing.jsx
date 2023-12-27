@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const check = async () => {
@@ -38,10 +39,13 @@ export default function Landing() {
       toast.error("Please enter a username");
       return;
     }
+    setLoading(true);
     const userExists = await check();
     if (!userExists) {
       navigate(`/start-purchase?username=${username}`);
     }
+    setUsername("");
+    setLoading(false);
   };
 
   return (
@@ -104,6 +108,8 @@ export default function Landing() {
           type="submit"
           colorScheme="blue"
           onClick={generate}
+          isLoading={loading}
+          isDisabled={loading}
         >
           Generate for $5
         </Button>

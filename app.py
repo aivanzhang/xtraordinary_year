@@ -3,10 +3,13 @@ from pymongo.server_api import ServerApi
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import RedirectResponse
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
 import stripe
 from modal import Image, Stub, asgi_app
 
-image = Image.debian_slim().pip_install(["stripe", "pymongo"])
+image = Image.debian_slim().pip_install(["stripe", "pymongo", "slowapi"])
 stub = Stub("xtraordinary_backend")
 
 stripe.api_key = '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'
@@ -39,12 +42,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 YOUR_DOMAIN = "https://www.myxtraordinaryyear.com"
 
 # check username status
 @app.get("/check/{username}")
-async def check_username(username: str) -> dict:
+@limiter.limit("5/second")
+async def check_username(request: Request, username: str) -> dict:
     status = status_collection.find_one({"username": username})
     if status:
         return {"status": status["status"]}
@@ -53,7 +60,8 @@ async def check_username(username: str) -> dict:
 
 # get username contents
 @app.get("/get/{username}")
-async def get_username(username: str) -> dict:
+@limiter.limit("5/second")
+async def get_username(request: Request, username: str) -> dict:
     review = review_collection.find_one({"username": username})
     if review:
         return review
@@ -63,7 +71,8 @@ async def get_username(username: str) -> dict:
 
 # create checkout session
 @app.get("/create-checkout-session/{username}")
-async def create_checkout_session(username: str):
+@limiter.limit("20/second")
+async def create_checkout_session(request: Request, username: str):
     # NEED TO TEST THIS
     status = status_collection.find_one({"username": username})
     if status:
@@ -99,6 +108,7 @@ endpoint_secret = 'whsec_6e20936ac9eff834f22f320766fdd4168de5fccb9359fd03dc5c2f3
 
 # create username pending from stripe
 @app.post("/pending_user")
+@limiter.limit("100/second")
 async def pending_user(request: Request):
     payload = await request.body()
     sig_header = request.headers.get('stripe-signature')
