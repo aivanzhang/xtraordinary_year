@@ -221,17 +221,21 @@ def create_wrapped_from_collection():
 
     while status is not None:
         username = status['username']
+        print("Creating wrapped for " + username)
+        generation_status = ""
         user_tweets = get_user_wrapped_tweets(username)
         if user_tweets is None:
             status_collection.update_one(
                 {'username': username},
                 {'$set': {'status': 'error'}}
             )
+            generation_status = "error"
         else:
             status_collection.update_one(
                 {'username': username},
                 {'$set': {'status': 'success'}}
             )
+            generation_status = "success"
             review_collection.insert_one({
                 'username': username,
                 'tweets': user_tweets
@@ -243,7 +247,11 @@ def create_wrapped_from_collection():
             )
             if user_email:
                 send_email(YOUR_DOMAIN + '/year/' + username, user_email['email'])
-
-
+        print("Finished creating wrapped for " + username + " with status " + generation_status)
         time.sleep(random.randint(1, 10))
         status = get_pending_username()
+
+while True:
+    create_wrapped_from_collection()
+    print("No pending usernames, sleeping for a minute")
+    time.sleep(60)
