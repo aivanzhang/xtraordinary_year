@@ -5,8 +5,8 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import RedirectResponse
 import stripe
 
-# stripe.api_key = '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'
-stripe.api_key = 'sk_test_51ORo6nDbJuqwhaWcMRErszF9hBqitjLOAktSiVj0AOdlE0V4OvOQ85iiuhoqR6MjwWl7spjitTf9bnt9GhDK9bqq00wwzaApuN'
+stripe.api_key = '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'
+# stripe.api_key = 'sk_test_51ORo6nDbJuqwhaWcMRErszF9hBqitjLOAktSiVj0AOdlE0V4OvOQ85iiuhoqR6MjwWl7spjitTf9bnt9GhDK9bqq00wwzaApuN'
 uri = "mongodb+srv://ivan2:Q3DitAGvTrMsCuwA@cluster0.zcfgio2.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi("1"))
 db = client["xtraordinary"]  # Name of the database
@@ -71,8 +71,8 @@ async def create_checkout_session(username: str):
         checkout_session = stripe.checkout.Session.create(
             line_items=[
                 {
-                    # 'price': 'price_1ORoAeDbJuqwhaWcyMCiGGGd',
-                    'price': 'price_1ORoHWDbJuqwhaWcbpAf9vVv',
+                    'price': 'price_1ORoAeDbJuqwhaWcyMCiGGGd',
+                    # 'price': 'price_1ORoHWDbJuqwhaWcbpAf9vVv',
                     'quantity': 1,
                 },
             ],
@@ -89,9 +89,9 @@ async def create_checkout_session(username: str):
 
     return RedirectResponse(url=checkout_session.url, status_code=303)
 
-endpoint_secret_test = 'whsec_41268a3fd6a6a71c851ab184f87b6a025d4d6c3f8494b525570ad971e3512334'
-# endpoint_secret = 'whsec_6e20936ac9eff834f22f320766fdd4168de5fccb9359fd03dc5c2f39a83c85a0'
-endpoint_secret = endpoint_secret_test
+# endpoint_secret_test = 'whsec_41268a3fd6a6a71c851ab184f87b6a025d4d6c3f8494b525570ad971e3512334'
+# endpoint_secret = endpoint_secret_test
+endpoint_secret = 'whsec_6e20936ac9eff834f22f320766fdd4168de5fccb9359fd03dc5c2f39a83c85a0'
 
 # create username pending from stripe
 @app.post("/pending_user")
@@ -118,6 +118,7 @@ async def pending_user(request: Request):
         )
         username = session["metadata"]["username"]
         customer_id = session["customer"]
-        status_collection.insert_one({"username": username, "status": "pending", "customer_id": customer_id})
+        customer_email = session["customer_details"]["email"]
+        status_collection.insert_one({"username": username, "status": "pending", "customer_id": customer_id, "customer_email": customer_email})
 
     return Response(status_code=200)
