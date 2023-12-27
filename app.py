@@ -60,6 +60,13 @@ async def get_username(username: str) -> dict:
 # create checkout session
 @app.get("/create-checkout-session/{username}")
 async def create_checkout_session(username: str):
+    # NEED TO TEST THIS
+    status = status_collection.find_one({"username": username})
+    if status:
+        if status["status"] == "pending":
+            return RedirectResponse(url=YOUR_DOMAIN + '/pending/'+ username, status_code=303)
+        elif status["status"] == "success":
+            return RedirectResponse(url=YOUR_DOMAIN + '/year/'+ username, status_code=303)
     try:
         checkout_session = stripe.checkout.Session.create(
             line_items=[

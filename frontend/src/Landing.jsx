@@ -66,24 +66,22 @@ export default function Landing() {
             already been created for you
           </li>
           <li>
-            If not you will need to pay a $5 fee. this fee prevents spam and
+            if not you will need to pay a $5 fee. this fee prevents spam and
             goes towards the cost of running the server, ai calls, and more.
+            sometime in January, any additional money (less costs) will be{" "}
+            <b>donated to charity</b> (to be determined via a poll).
           </li>
           <li>
             after you pay, the username will be added to the queue. depending on
             traffic, it may take some time to process. if it is taking more than
-            24 hours, by clicking the &quot;issues?&quot; button above, you can
-            email me and i will look into it.
+            24 hours, click the &quot;issues?&quot; button above to email me and
+            i will look into it as soon as possible.
           </li>
           <li>
             check the status of your year in review here: <br />
             <span className="underline font-bold">
               {window.location.origin}/pending/USERNAME
             </span>
-          </li>
-          <li>
-            sometime in January, any additional money (less costs) will be
-            donated to charity (to be determined via a poll).
           </li>
         </ol>
         <div className="h-5" />
@@ -109,6 +107,20 @@ export default function Landing() {
             Generate for $5
           </Button>
         )}
+        <div className="h-5" />
+        <Text className="font-bold">Examples</Text>
+        <Text>
+          <Button
+            as="a"
+            href="/year/elonmusk"
+            colorScheme="blue"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            elonmusk
+          </Button>
+        </Text>
+        <div className="h-5" />
       </VStack>
     </VStack>
   );
