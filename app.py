@@ -67,7 +67,7 @@ async def get_username(request: Request, username: str) -> dict:
         return {
             "username": review["username"],
             "tweets": review["tweets"],
-            "gpt_tweets": review["gpt_tweets"]
+            "gpt_tweets": review["tweets"]["gpt_tweets"]
         }
     else:
         return {"error": "not_found"}
