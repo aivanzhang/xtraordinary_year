@@ -243,7 +243,7 @@ def create_wrapped_from_collection():
             # Check if email is in the status collection, then send email
             user_email = status_collection.find_one(
                 {'username': username},
-                {'email': 1}
+                {'customer_email': 1}
             )
             if user_email:
                 send_email(YOUR_DOMAIN + '/year/' + username, user_email['customer_email'])
