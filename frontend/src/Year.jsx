@@ -1,6 +1,9 @@
 import { VStack, Box, HStack, Text } from "@chakra-ui/react";
 import { BsTwitterX, BsTwitter } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 import TopBar from "./TopBar";
 
 const getRandomPosition = () => ({
@@ -27,7 +30,7 @@ const BackgroundWithImages = () => {
   );
 };
 
-const TweetComponent = ({ username = "SBerens1", tweetId, emoji }) => {
+const TweetComponent = ({ username, tweetId, emoji }) => {
   const array_emojis = Array(8).fill(0);
   const [tweetUrl, setTweetUrl] = useState();
 
@@ -35,7 +38,7 @@ const TweetComponent = ({ username = "SBerens1", tweetId, emoji }) => {
     setTweetUrl(
       `https://twitter.com/${username}/status/${tweetId}?ref_src=twsrc%5Etfw`,
     );
-  }, [tweetId]);
+  }, [tweetId, username]);
 
   if (!tweetUrl) {
     return null;
@@ -64,6 +67,27 @@ const XWrapper = ({ text }) => (
 );
 
 export default function Year() {
+  const { username } = useParams();
+  const [tw_details, setTwDetails] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const get_details = async () => {
+      try {
+        const res = await axios.get(`/get/${username}`);
+        const details = res.data;
+        if (details.error) {
+          navigate("/pending/" + username);
+        } else {
+          setTwDetails(details);
+        }
+      } catch (e) {
+        toast.error("Error getting details");
+      }
+    };
+    get_details();
+  }, [username]);
+
   // const tw_details = {
   //   longest_tweet: "1675943695772975106",
   //   shortest_tweet: "1703423597396762827",
@@ -149,7 +173,9 @@ export default function Year() {
   //   },
   // };
 
-  useEffect(() => {}, []);
+  if (!tw_details) {
+    return null;
+  }
 
   return (
     <VStack className="w-full md:w-screen">

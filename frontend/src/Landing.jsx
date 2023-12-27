@@ -14,9 +14,24 @@ import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const [username, setUsername] = useState("");
+  const [isGenerated, setIsGenerated] = useState();
   const navigate = useNavigate();
 
-  const check = async () => {};
+  const check = async () => {
+    try {
+      const res = await axios.get(`/check/${username}`);
+      const status = res.data.status;
+      if (status === "pending" || status === "error") {
+        navigate(`/pending/${username}`);
+      } else if (status === "success") {
+        navigate(`/year/${username}`);
+      } else {
+        setIsGenerated(false);
+      }
+    } catch (e) {
+      toast.error("Error checking username");
+    }
+  };
 
   const generate = async () => {
     if (username === "") {
@@ -81,17 +96,19 @@ export default function Landing() {
             }}
           />
         </InputGroup>
-        <Button className="w-full" colorScheme="blue">
+        <Button className="w-full" colorScheme="blue" onClick={check}>
           Check
         </Button>
-        <Button
-          className="w-full"
-          type="submit"
-          colorScheme="blue"
-          onClick={generate}
-        >
-          Generate for $5
-        </Button>
+        {isGenerated !== undefined && !isGenerated && (
+          <Button
+            className="w-full"
+            type="submit"
+            colorScheme="blue"
+            onClick={generate}
+          >
+            Generate for $5
+          </Button>
+        )}
       </VStack>
     </VStack>
   );
