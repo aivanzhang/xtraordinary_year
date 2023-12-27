@@ -32,7 +32,7 @@ status_collection = db["statuses"]  # Name of the collection
 
 client = OpenAI()
 
-scraper = Nitter(log_level=1, skip_instance_check=False)
+scraper = Nitter(log_level=1, skip_instance_check=True)
 
 YOUR_DOMAIN = "https://www.myxtraordinaryyear.com"
 
@@ -155,6 +155,7 @@ def get_gpt_tweets(tweets):
 def get_user_wrapped_tweets(user):
     tweets = get_user_tweets(user)
     distilled_tweets = [distill_tweet(tweet) for tweet in tweets]
+    distilled_tweets = [tweet for tweet in distilled_tweets if tweet['user'] == "@{}".format(user)]
     if len(distilled_tweets) == 0:
         return None
 
@@ -165,8 +166,6 @@ def get_user_wrapped_tweets(user):
 
     longest_tweet = max(distilled_tweets, key=lambda x: len(x['text']))
     shortest_tweet = min(distilled_tweets, key=lambda x: len(x['text']))
-
-
 
     most_liked_tweet = max(distilled_tweets, key=lambda x: x['likes'])
     distilled_tweets = [tweet for tweet in distilled_tweets if tweet['id'] != most_liked_tweet['id']]
