@@ -90,7 +90,7 @@ export default function Year() {
 
   return (
     <VStack className="w-full md:w-screen">
-      <BackgroundWithImages />
+      {tw_details && <BackgroundWithImages />}
       <VStack p="4" className="w-full">
         <TopBar />
         <div className="h-10" />
