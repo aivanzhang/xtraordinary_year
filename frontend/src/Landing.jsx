@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
   const [username, setUsername] = useState("");
-  const [isGenerated, setIsGenerated] = useState();
   const navigate = useNavigate();
 
   const check = async () => {
@@ -26,8 +25,9 @@ export default function Landing() {
       } else if (status === "success") {
         navigate(`/year/${username}`);
       } else {
-        setIsGenerated(false);
+        return false;
       }
+      return true;
     } catch (e) {
       toast.error("Error checking username");
     }
@@ -38,7 +38,10 @@ export default function Landing() {
       toast.error("Please enter a username");
       return;
     }
-    navigate(`/start-purchase?username=${username}`);
+    const userExists = await check();
+    if (!userExists) {
+      navigate(`/start-purchase?username=${username}`);
+    }
   };
 
   return (
@@ -61,15 +64,12 @@ export default function Landing() {
         </Text>
         <ol className="list-decimal w-[90%] md:w-[80%]">
           <li>make sure your Twitter account is public</li>
+          <li>enter the your username below and click the button.</li>
           <li>
-            enter the your username below and check if a year in review has
-            already been created for you
-          </li>
-          <li>
-            if not you will need to pay a $5 fee. this fee prevents spam and
-            goes towards the cost of running the server, ai calls, and more.
-            sometime in January, any additional money (less costs) will be{" "}
-            <b>donated to charity</b> (to be determined via a poll).
+            if you&apos;ve already paid, you will be redirected to your
+            year/status page. otherwise you will need to pay a $5 fee. this fee
+            prevents spam and goes towards the cost of running the server, ai
+            calls, and more.
           </li>
           <li>
             after you pay, the username will be added to the queue. depending on
@@ -83,6 +83,11 @@ export default function Landing() {
               {window.location.origin}/pending/USERNAME
             </span>
           </li>
+          <li>
+            once it is ready, you will receive an email with the link to your
+            page. the email will be from myxtraordinaryyear@gmail.com (check
+            Spam if you don&apos;t see it).
+          </li>
         </ol>
         <div className="h-5" />
         <InputGroup size="lg">
@@ -94,32 +99,61 @@ export default function Landing() {
             }}
           />
         </InputGroup>
-        <Button className="w-full" colorScheme="blue" onClick={check}>
-          Check
+        <Button
+          className="w-full"
+          type="submit"
+          colorScheme="blue"
+          onClick={generate}
+        >
+          Generate for $5
         </Button>
-        {isGenerated !== undefined && !isGenerated && (
-          <Button
-            className="w-full"
-            type="submit"
-            colorScheme="blue"
-            onClick={generate}
-          >
-            Generate for $5
-          </Button>
-        )}
         <div className="h-5" />
         <Text className="font-bold">Examples</Text>
-        <Text>
-          <Button
-            as="a"
-            href="/year/elonmusk"
-            colorScheme="blue"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            elonmusk
-          </Button>
-        </Text>
+        <Button
+          as="a"
+          href="/year/elonmusk"
+          colorScheme="blue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          elon musk
+        </Button>
+        <Button
+          as="a"
+          href="/year/taylorswift13"
+          colorScheme="blue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          taylor swift
+        </Button>
+        <Button
+          as="a"
+          href="/year/KingJames"
+          colorScheme="blue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          lebron james
+        </Button>
+        <Button
+          as="a"
+          href="/year/jack"
+          colorScheme="blue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          jack dorsey
+        </Button>
+        <Button
+          as="a"
+          href="/year/pmarca"
+          colorScheme="blue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          marc andreessen
+        </Button>
         <div className="h-5" />
       </VStack>
     </VStack>
