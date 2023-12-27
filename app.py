@@ -105,7 +105,7 @@ async def create_checkout_session(request: Request, username: str):
 
 # endpoint_secret_test = 'whsec_41268a3fd6a6a71c851ab184f87b6a025d4d6c3f8494b525570ad971e3512334'
 # endpoint_secret = endpoint_secret_test
-endpoint_secret = 'whsec_6e20936ac9eff834f22f320766fdd4168de5fccb9359fd03dc5c2f39a83c85a0'
+endpoint_secret = 'whsec_u6TjbLfzWS6dJKr9lJVQDj4Ufhjkgn9d'
 
 # create username pending from stripe
 @app.post("/pending_user")
