@@ -32,8 +32,8 @@ export default function Pending() {
       <TopBar />
       <div className="h-10" />
       <Heading className="w-1/2 text-[#1DA1F2] text-xl text-center">
-        Your payment has been received and we&apos;re working on generating your
-        page! Thank you for your patience.
+        your payment has been received and we&apos;re working on generating your
+        page! thank you for your patience.
       </Heading>
       <div className="h-10" />
       <Spinner
