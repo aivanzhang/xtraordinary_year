@@ -2,9 +2,9 @@ import { VStack, Box, HStack, Text, Heading, Spinner } from "@chakra-ui/react";
 import { BsTwitterX, BsTwitter } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Tweet } from "react-tweet";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { TwitterShareButton } from "react-twitter-embed";
 import TopBar from "./TopBar";
 
 const getRandomPosition = () => ({
@@ -19,7 +19,7 @@ const BackgroundWithImages = () => {
     <Box position="absolute" overflow="hidden" className="h-full w-full -z-40">
       {array_emojis.map((pos, index) => (
         <Box
-          key={index}
+          key={`bg-${index}`}
           position="absolute"
           style={getRandomPosition()}
           className="opacity-30"
@@ -31,16 +31,19 @@ const BackgroundWithImages = () => {
   );
 };
 
-const TweetComponent = ({ tweetUrl, emoji }) => {
+const TweetComponent = ({ tweetID, emoji }) => {
+  // const [isLoading, setIsLoading] = useState(true);
   const array_emojis = Array(8).fill(0);
   return (
     <VStack position="relative" className="w-full">
-      <blockquote className="twitter-tweet">
-        <a href={tweetUrl} />
-      </blockquote>
+      <Tweet id={tweetID} />
       {emoji &&
-        array_emojis.map((index) => (
-          <Box key={index} position="absolute" style={getRandomPosition()}>
+        array_emojis.map((_, index) => (
+          <Box
+            key={`emoji-${index}`}
+            position="absolute"
+            style={getRandomPosition()}
+          >
             {emoji}
           </Box>
         ))}
@@ -77,9 +80,6 @@ export default function Year() {
     get_details();
   }, [username]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const getTweetUrl = (username, tweetId) =>
-    `https://twitter.com/${username}/status/${tweetId}?ref_src=twsrc%5Etfw`;
-
   return (
     <VStack className="w-full md:w-screen">
       {tw_details && <BackgroundWithImages />}
@@ -105,67 +105,39 @@ export default function Year() {
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               here&apos;s one of the first things you said
             </Text>
-            <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.first_tweet,
-              )}
-            />
+            <TweetComponent tweetID={tw_details.tweets.first_tweet} />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               and ended it with
             </Text>
-            <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.last_tweet,
-              )}
-            />
+            <TweetComponent tweetID={tw_details.tweets.last_tweet} />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               sometimes you said a lot
             </Text>
-            <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.longest_tweet,
-              )}
-            />
+            <TweetComponent tweetID={tw_details.tweets.longest_tweet} />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               sometimes you said a little
             </Text>
-            <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.shortest_tweet,
-              )}
-            />
+            <TweetComponent tweetID={tw_details.tweets.shortest_tweet} />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               people liked your Tweets
             </Text>
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.most_liked_tweet,
-              )}
+              tweetID={tw_details.tweets.most_liked_tweet}
               emoji="❤️"
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               retweeted your messages
             </Text>
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.most_retweeted_tweet,
-              )}
+              tweetID={tw_details.tweets.most_retweeted_tweet}
               emoji="🔁"
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
+              {" "}
               and commented on your thoughts
             </Text>
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.most_commented_tweet,
-              )}
+              tweetID={tw_details.tweets.most_commented_tweet}
               emoji="💬"
             />
             <Text className="text-2xl text-white font-bold text-center bg-[#1DA1F2] p-2 rounded-md">
@@ -176,30 +148,21 @@ export default function Year() {
               <span>tweets</span>
             </HStack>
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.gpt_tweets.extreme,
-              )}
+              tweetID={tw_details.tweets.gpt_tweets.extreme}
               emoji="🥵"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
               <span>a few </span> <XWrapper text="plosive" /> <span>ones</span>
-            </HStack>
+            </HStack>{" "}
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.gpt_tweets.explosive,
-              )}
+              tweetID={tw_details.tweets.gpt_tweets.explosive}
               emoji="💥"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
               <span>some that were quite </span> <XWrapper text="quisite" />
             </HStack>
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.gpt_tweets.exquisite,
-              )}
+              tweetID={tw_details.tweets.gpt_tweets.exquisite}
               emoji="✨"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -207,29 +170,23 @@ export default function Year() {
               <span>than others </span>
             </HStack>
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.gpt_tweets.expressive,
-              )}
+              tweetID={tw_details.tweets.gpt_tweets.expressive}
               emoji="🗣️"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
               <span>and finally a few </span> <XWrapper text="tradorinary" />{" "}
               <span>ones to cap off the year</span>
-            </HStack>
+            </HStack>{" "}
             <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.gpt_tweets.extraordinary,
-              )}
+              tweetID={tw_details.tweets.gpt_tweets.extraordinary}
               emoji="🚀"
             />
-            <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
+            {/* <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               your spirit animal for the year is
             </Text>
             <Text className="text-2xl bg-[#1DA1F2] text-white font-bold text-center underline p-4 rounded-md">
               {tw_details.tweets.gpt_tweets.spirit_animal}
-            </Text>
+            </Text>{" "}
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               here&apos;s a summary of your year
             </Text>
@@ -240,23 +197,24 @@ export default function Year() {
               share it with your followers!
             </Text>
             <div className="h-[10vh]" />
-            <TwitterShareButton
-              tag="XtraordinaryYear"
-              options={{
-                text: `Check out my #xtraordinary year at ${window.location.href}`,
-              }}
+            <a
+              className="twitter-share-button"
+              href={
+                "https://twitter.com/intent/tweet?hashtags=xtraordinary&text=" +
+                encodeURIComponent(
+                  `Check out my Twitter Year in Review at ${window.location.href}`,
+                )
+              }
               data-size="large"
-            />
+            >
+              Share
+            </a>
             <div className="h-[10vh]" />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
+              {" "}
               p.s. here&apos; are something random you tweeted this year
             </Text>
-            <TweetComponent
-              tweetUrl={getTweetUrl(
-                tw_details.username,
-                tw_details.tweets.random_tweet,
-              )}
-            />
+            <TweetComponent tweetID={tw_details.tweets.random_tweet} />
             {tw_details.tweets.random_quoted_tweet && (
               <>
                 {" "}
@@ -264,13 +222,10 @@ export default function Year() {
                   p.p.s. here&apos; are something random you quoted this year
                 </Text>
                 <TweetComponent
-                  tweetUrl={getTweetUrl(
-                    tw_details.username,
-                    tw_details.tweets.random_quoted_tweet,
-                  )}
+                  tweetID={tw_details.tweets.random_quoted_tweet}
                 />
               </>
-            )}
+            )} */}
           </VStack>
         )}
       </VStack>
