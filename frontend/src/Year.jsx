@@ -115,35 +115,35 @@ export default function Year() {
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.first_tweet}
+              tweetId={tw_details.tweets.first_tweet}
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               and ended it with
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.last_tweet}
+              tweetId={tw_details.tweets.last_tweet}
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               sometimes you said a lot
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.longest_tweet}
+              tweetId={tw_details.tweets.longest_tweet}
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               sometimes you said a little
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.shortest_tweet}
+              tweetId={tw_details.tweets.shortest_tweet}
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               people liked your Tweets
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.most_liked_tweet}
+              tweetId={tw_details.tweets.most_liked_tweet}
               emoji="❤️"
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -151,7 +151,7 @@ export default function Year() {
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.most_retweeted_tweet}
+              tweetId={tw_details.tweets.most_retweeted_tweet}
               emoji="🔁"
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -159,7 +159,7 @@ export default function Year() {
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.most_commented_tweet}
+              tweetId={tw_details.tweets.most_commented_tweet}
               emoji="💬"
             />
             <Text className="text-2xl text-white font-bold text-center bg-[#1DA1F2] p-2 rounded-md">
@@ -171,7 +171,7 @@ export default function Year() {
             </HStack>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.gpt_tweets.extreme}
+              tweetId={tw_details.tweets.gpt_tweets.extreme}
               emoji="🥵"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -179,7 +179,7 @@ export default function Year() {
             </HStack>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.gpt_tweets.explosive}
+              tweetId={tw_details.tweets.gpt_tweets.explosive}
               emoji="💥"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -187,7 +187,7 @@ export default function Year() {
             </HStack>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.gpt_tweets.exquisite}
+              tweetId={tw_details.tweets.gpt_tweets.exquisite}
               emoji="✨"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -196,7 +196,7 @@ export default function Year() {
             </HStack>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.gpt_tweets.expressive}
+              tweetId={tw_details.tweets.gpt_tweets.expressive}
               emoji="🗣️"
             />
             <HStack className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -205,20 +205,20 @@ export default function Year() {
             </HStack>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.gpt_tweets.extraordinary}
+              tweetId={tw_details.tweets.gpt_tweets.extraordinary}
               emoji="🚀"
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               your spirit animal for the year is
             </Text>
             <Text className="text-2xl bg-[#1DA1F2] text-white font-bold text-center underline p-4 rounded-md">
-              {tw_details.gpt_tweets.spirit_animal}
+              {tw_details.tweets.gpt_tweets.spirit_animal}
             </Text>
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               here&apos;s a summary of your year
             </Text>
             <Text className="text-lg bg-[#1DA1F2] text-white p-2 rounded-lg md:w-1/2">
-              {tw_details.gpt_tweets.year_summary}
+              {tw_details.tweets.gpt_tweets.year_summary}
             </Text>
             <div className="h-[10vh]" />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
@@ -226,14 +226,14 @@ export default function Year() {
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.random_tweet}
+              tweetId={tw_details.tweets.random_tweet}
             />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               p.p.s. here&apos; are something random you quoted this year
             </Text>
             <TweetComponent
               username={tw_details.username}
-              tweetId={tw_details.random_quoted_tweet}
+              tweetId={tw_details.tweets.random_quoted_tweet}
             />
           </VStack>
         )}
