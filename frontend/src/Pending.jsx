@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { VStack, Spinner } from "@chakra-ui/react";
+import { VStack, Spinner, Heading } from "@chakra-ui/react";
 import TopBar from "./TopBar";
 
 export default function Pending() {
@@ -31,7 +31,18 @@ export default function Pending() {
     <VStack p="4" className="w-full">
       <TopBar />
       <div className="h-10" />
-      <Spinner size="xl" thickness="5px" speed="0.65s" emptyColor="gray.200" />
+      <Heading className="w-1/2 text-[#1DA1F2] text-xl text-center">
+        Your payment has been received and we&apos;re working on generating your
+        page! Thank you for your patience.
+      </Heading>
+      <div className="h-10" />
+      <Spinner
+        size="xl"
+        thickness="5px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        color="#1DA1F2"
+      />
     </VStack>
   );
 }
