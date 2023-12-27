@@ -94,8 +94,8 @@ export default function Landing() {
           </li>
         </ol>
         <span className="italic">
-          note that if you have thousands of tweets, this may leave out some of
-          them
+          note that this only accounts for your past 1000 tweets, replies,
+          and/or retweets.
         </span>
         <div className="h-5" />
         <InputGroup size="lg">
