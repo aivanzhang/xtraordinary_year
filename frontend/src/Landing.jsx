@@ -90,9 +90,13 @@ export default function Landing() {
           <li>
             once it is ready, you will receive an email with the link to your
             page. the email will be from myxtraordinaryyear@gmail.com (check
-            Spam if you don&apos;t see it).
+            spam if you don&apos;t see it).
           </li>
         </ol>
+        <span className="italic">
+          note that if you have thousands of tweets, this may leave out some of
+          them
+        </span>
         <div className="h-5" />
         <InputGroup size="lg">
           <InputLeftAddon>https://twitter.com/</InputLeftAddon>
