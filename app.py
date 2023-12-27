@@ -52,6 +52,7 @@ YOUR_DOMAIN = "https://www.myxtraordinaryyear.com"
 @app.get("/check/{username}")
 @limiter.limit("5/second")
 async def check_username(request: Request, username: str) -> dict:
+    username = username.lower()
     status = status_collection.find_one({"username": username})
     if status:
         return {"status": status["status"]}
@@ -62,6 +63,7 @@ async def check_username(request: Request, username: str) -> dict:
 @app.get("/get/{username}")
 @limiter.limit("5/second")
 async def get_username(request: Request, username: str) -> dict:
+    username = username.lower()
     review = review_collection.find_one({"username": username})
     if review:
         return {
@@ -77,6 +79,7 @@ async def get_username(request: Request, username: str) -> dict:
 @app.get("/create-checkout-session/{username}")
 @limiter.limit("20/second")
 async def create_checkout_session(request: Request, username: str):
+    username = username.lower()
     # NEED TO TEST THIS
     status = status_collection.find_one({"username": username})
     if status:
@@ -136,6 +139,7 @@ async def pending_user(request: Request):
             expand=['line_items'],
         )
         username = session["metadata"]["username"]
+        username = username.lower()
         customer_id = session["customer"]
         customer_email = session["customer_details"]["email"]
         status_collection.insert_one({"username": username, "status": "pending", "customer_id": customer_id, "customer_email": customer_email})
