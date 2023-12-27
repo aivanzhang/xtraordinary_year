@@ -3,6 +3,7 @@ import { BsTwitterX, BsTwitter } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Tweet } from "react-tweet";
+import { FaXTwitter } from "react-icons/fa6";
 import axios from "axios";
 import { toast } from "react-toastify";
 import TopBar from "./TopBar";
@@ -196,9 +197,8 @@ export default function Year() {
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               share it with your followers!
             </Text>
-            <div className="h-[10vh]" />
             <a
-              className="twitter-share-button"
+              className="twitter-share-button inline-flex justify-center items-center gap-3 bg-[#1DA1F2] text-white p-2 rounded-lg md:w-1/2 text-2xl font-bold"
               href={
                 "https://twitter.com/intent/tweet?hashtags=xtraordinary&text=" +
                 encodeURIComponent(
@@ -207,7 +207,7 @@ export default function Year() {
               }
               data-size="large"
             >
-              Share
+              <FaXTwitter size="2rem" /> Share
             </a>
             <div className="h-[10vh]" />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
