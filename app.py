@@ -95,6 +95,7 @@ async def create_checkout_session(request: Request, username: str):
             metadata={
                 "username": username
             },
+            allow_promotion_codes=True,
             customer_creation="always"
         )
     except Exception as e:
