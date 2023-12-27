@@ -8,6 +8,9 @@ from openai import OpenAI
 import json
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+from email.message import Message
+import smtplib
+
 load_dotenv()
 uri = "mongodb+srv://ivan2:Q3DitAGvTrMsCuwA@cluster0.zcfgio2.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi("1"))
@@ -30,6 +33,39 @@ status_collection = db["statuses"]  # Name of the collection
 client = OpenAI()
 
 scraper = Nitter(log_level=1, skip_instance_check=False)
+
+YOUR_DOMAIN = "https://www.myxtraordinaryyear.com"
+
+def send_email(url, to_email):
+    WRAPPED_EMAIL = "myxtraordinaryyear@gmail.com"
+    SMTP_USER = "myxtraordinaryyear@gmail.com"
+    SMTP_PASS = "kouw fqwy anxa chtz"
+    SMTP_SERVER = "smtp.gmail.com"
+    SMTP_PORT = 587
+    if (
+        not SMTP_USER
+        or not SMTP_PASS
+        or not SMTP_SERVER
+        or not SMTP_PORT
+        or not WRAPPED_EMAIL
+    ):
+        print(
+            "SMTP_USER, SMTP_PASS, SMTP_SERVER, and SMTP_PORT must be set in the environment in order to send emails."
+        )
+        return
+
+    msg = Message()
+    msg["From"] = WRAPPED_EMAIL
+    msg["To"] = to_email
+    msg["Subject"] = "here's your xtraordinary year!"
+    msg.add_header("Content-Type", "text/html")
+    msg.set_payload("See your xtraordinary year here: " + "<a href='" + url + "'>" + url + "</a>")
+
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+        server.starttls()
+        server.login(SMTP_USER, SMTP_PASS)
+        server.sendmail(WRAPPED_EMAIL, [to_email], msg.as_string())
+
 
 def get_user_tweets(user):
     max_retries = 5
@@ -196,10 +232,18 @@ def create_wrapped_from_collection():
                 {'username': username},
                 {'$set': {'status': 'success'}}
             )
-
             review_collection.insert_one({
                 'username': username,
                 'tweets': user_tweets
             })
+            # Check if email is in the status collection, then send email
+            user_email = status_collection.find_one(
+                {'username': username},
+                {'email': 1}
+            )
+            if user_email:
+                send_email(YOUR_DOMAIN + '/year/' + username, user_email['email'])
+
+
         time.sleep(random.randint(1, 10))
         status = get_pending_username()
