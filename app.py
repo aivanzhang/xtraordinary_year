@@ -64,7 +64,11 @@ async def check_username(request: Request, username: str) -> dict:
 async def get_username(request: Request, username: str) -> dict:
     review = review_collection.find_one({"username": username})
     if review:
-        return review
+        return {
+            "username": review["username"],
+            "tweets": review["tweets"],
+            "gpt_tweets": review["gpt_tweets"]
+        }
     else:
         return {"error": "not_found"}
 
