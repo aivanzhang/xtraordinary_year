@@ -4,6 +4,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.responses import RedirectResponse
 import stripe
+from modal import Image, Stub, asgi_app
+
+image = Image.debian_slim().pip_install(["stripe", "pymongo"])
+stub = Stub("xtraordinary_backend")
 
 stripe.api_key = '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'
 # stripe.api_key = 'sk_test_51ORo6nDbJuqwhaWcMRErszF9hBqitjLOAktSiVj0AOdlE0V4OvOQ85iiuhoqR6MjwWl7spjitTf9bnt9GhDK9bqq00wwzaApuN'
@@ -122,3 +126,8 @@ async def pending_user(request: Request):
         status_collection.insert_one({"username": username, "status": "pending", "customer_id": customer_id, "customer_email": customer_email})
 
     return Response(status_code=200)
+
+@stub.function(image=image)
+@asgi_app()
+def fastapi_app():
+    return app
