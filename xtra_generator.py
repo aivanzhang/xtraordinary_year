@@ -74,7 +74,7 @@ def get_user_tweets(user):
     while retries < max_retries:
         try:
             random_instance = scraper.get_random_instance()
-            tweets = scraper.get_tweets(user, mode='user', since="2023-01-01", instance=random_instance)
+            tweets = scraper.get_tweets(user, number=1000, max_retries=10, mode='user', since="2023-01-01", instance=random_instance)
             returned_tweets = tweets["tweets"]
             if len(returned_tweets) == 0:
                 raise Exception("No tweets returned")

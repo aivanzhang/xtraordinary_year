@@ -111,7 +111,7 @@ export default function Year() {
         ) : (
           <VStack spacing="2" className="w-full">
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
-              you started your year with a tweet
+              here&apos;s one of the first things you said
             </Text>
             <TweetComponent tweetId={tw_details.first_tweet} />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
