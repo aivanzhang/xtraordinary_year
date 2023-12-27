@@ -181,7 +181,7 @@ export default function Year() {
               tweetID={tw_details.tweets.gpt_tweets.extraordinary}
               emoji="🚀"
             />
-            {/* <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
+            <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               your spirit animal for the year is
             </Text>
             <Text className="text-2xl bg-[#1DA1F2] text-white font-bold text-center underline p-4 rounded-md">
@@ -225,7 +225,7 @@ export default function Year() {
                   tweetID={tw_details.tweets.random_quoted_tweet}
                 />
               </>
-            )} */}
+            )}
           </VStack>
         )}
       </VStack>
