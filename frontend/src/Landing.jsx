@@ -153,6 +153,15 @@ export default function Landing() {
         </Button>
         <Button
           as="a"
+          href="/year/garrytan"
+          colorScheme="blue"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          garry tan
+        </Button>
+        <Button
+          as="a"
           href="/year/pmarca"
           colorScheme="blue"
           target="_blank"
