@@ -212,14 +212,14 @@ export default function Year() {
             <div className="h-[10vh]" />
             <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
               {" "}
-              p.s. here&apos; are something random you tweeted this year
+              p.s. something random you tweeted this year
             </Text>
             <TweetComponent tweetID={tw_details.tweets.random_tweet} />
             {tw_details.tweets.random_quoted_tweet && (
               <>
                 {" "}
                 <Text className="text-2xl text-[#1DA1F2] font-bold text-center">
-                  p.p.s. here&apos; are something random you quoted this year
+                  p.p.s. something random you quoted this year
                 </Text>
                 <TweetComponent
                   tweetID={tw_details.tweets.random_quoted_tweet}

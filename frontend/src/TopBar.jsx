@@ -24,10 +24,10 @@ export default function TopBar() {
         as="a"
         variant="link"
         href="https://aivanzhang.com/"
-        colorScheme="blue"
         target="_blank"
         rel="noopener noreferrer"
         size="md"
+        color="#1DA1F2"
       >
         about me
       </Button>
@@ -35,8 +35,8 @@ export default function TopBar() {
         as="a"
         variant="link"
         href="mailto:ivanzhangofficial@gmail.com"
-        colorScheme="blue"
         size="md"
+        color="#1DA1F2"
       >
         issues?
       </Button>
