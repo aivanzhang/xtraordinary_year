@@ -79,7 +79,10 @@ export default function Landing() {
         </Text>
         <ol className="list-decimal w-[90%] md:w-[80%]">
           <li>make sure your Twitter account is public</li>
-          <li>enter the your username and email below and click the button.</li>
+          <li>
+            enter the your username and email (optional) below and click the
+            button.
+          </li>
           <li>
             your username will be added to the queue. depending on traffic and
             limits, it may take some time to process.
@@ -96,7 +99,7 @@ export default function Landing() {
             spam if you don&apos;t see it).
           </li>
           <li>
-            check oout your year in review here: <br />
+            check out your year in review here: <br />
             <span className="underline font-bold">
               {window.location.origin}/year/USERNAME
             </span>
@@ -104,7 +107,65 @@ export default function Landing() {
         </ol>
         <div>
           <span className="italic">
-            note 0: if you like this, consider buying me a coffee{" "}
+            note 0: if you like this project, please consider donating to a good
+            cause. here are some suggestions:
+            <ul className="list-disc w-full ml-5">
+              <li>
+                <a
+                  href="https://www.stjude.org/donate/donate-to-st-jude-today.html?sc_icid=wtg-lz-donatenow&adobe_mc_sdid=SDID%3D2257728622E4B9DB-71C3C7ACFD5FB2DA%7CMCORGID%3D091B467352782E0D0A490D45%40AdobeOrg%7CTS%3D1703787163&adobe_mc_ref=https%3A%2F%2Fwww.stjude.org%2Fgive.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  St. Jude Children&apos;s Research Hospital
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://give.feedingamerica.org/a/donate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  Feeding America
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://give.salvationarmyusa.org/give/164006/#!/donation/checkout?c_src=USN_hero&c_src2=EOYappeal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  Salvation Army
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://donate.code.org/give/529456/#!/donation/checkout"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  Code.org
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://give.girlswhocode.com/give/77372/#!/donation/checkout"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  Girls Who Code
+                </a>
+              </li>
+            </ul>
+          </span>
+          <br />
+          <span className="italic">
+            note 1: if you want to support this project, consider buying me a
+            coffee{" "}
             <a
               href="https://www.buymeacoffee.com/aivanzhang"
               target="_blank"
@@ -116,8 +177,20 @@ export default function Landing() {
           </span>
           <br />
           <span className="italic">
-            note 1: this only accounts for your past 100 tweets, replies, and/or
-            retweets.
+            note 2: i might post cool stuff, consider following me on Twitter{" "}
+            <a
+              href="https://twitter.com/aivanzhang"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              here!
+            </a>
+          </span>
+          <br />
+          <span className="italic">
+            note 3: because of rate limits, this only accounts for your last 100
+            tweets, replies, and/or retweets.
           </span>
         </div>
         <div className="h-5" />
