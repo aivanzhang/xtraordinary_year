@@ -190,7 +190,8 @@ export default function Landing() {
           <br />
           <span className="italic">
             note 3: because of rate limits, this only accounts for your last 100
-            tweets, replies, and/or retweets.
+            tweets, replies, and/or retweets. if you want a more complete
+            version, contact me and i&apos;ll see what i can do.
           </span>
         </div>
         <div className="h-5" />
