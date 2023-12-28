@@ -96,7 +96,15 @@ export default function Landing() {
             spam if you don&apos;t see it).
           </li>
           <li>
-            if you like this, consider buying me a coffee{" "}
+            check oout your year in review here: <br />
+            <span className="underline font-bold">
+              {window.location.origin}/year/USERNAME
+            </span>
+          </li>
+        </ol>
+        <div>
+          <span className="italic">
+            note 0: if you like this, consider buying me a coffee{" "}
             <a
               href="https://www.buymeacoffee.com/aivanzhang"
               target="_blank"
@@ -105,12 +113,13 @@ export default function Landing() {
             >
               here!
             </a>
-          </li>
-        </ol>
-        <span className="italic">
-          note that this only accounts for your past 100 tweets, replies, and/or
-          retweets.
-        </span>
+          </span>
+          <br />
+          <span className="italic">
+            note 1: this only accounts for your past 100 tweets, replies, and/or
+            retweets.
+          </span>
+        </div>
         <div className="h-5" />
         <InputGroup size="lg">
           <InputLeftAddon>Email</InputLeftAddon>
