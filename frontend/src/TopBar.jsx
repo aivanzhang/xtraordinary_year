@@ -1,10 +1,16 @@
 import { HStack, VStack, Button } from "@chakra-ui/react";
 import { BsTwitterX } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 export default function TopBar() {
+  const navigate = useNavigate();
   return (
     <VStack>
-      <HStack className="text-3xl font-bold text-[#1DA1F2]">
+      <HStack
+        className="text-3xl font-bold text-[#1DA1F2]"
+        onClick={() => navigate("/")}
+        cursor="pointer"
+      >
         <span>my</span>
         <span className="inline-flex justify-center items-center">
           <span className="inline-flex justify-center items-center">
