@@ -120,7 +120,7 @@ endpoint_secret = 'whsec_u6TjbLfzWS6dJKr9lJVQDj4Ufhjkgn9d'
 async def add_pending_user(request: Request):
     req = await request.json()
     username = req["username"]
-    username = username.lower()
+    username = username.lower().strip()
     customer_email = req["customer_email"]
     status_collection.insert_one({"username": username, "status": "pending", "customer_email": customer_email})
 
